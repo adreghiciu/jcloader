@@ -9,7 +9,7 @@ http://www.xeustechnologies.org/schema/jcl http://www.xeustechnologies.org/schem
     <jcl:jcl id="jcl1">
         <constructor-arg>
             <list>
-                <value>target/test-jcl.jar</value>
+                <value>target/dependency/test-jcl.jar</value>
             </list>
         </constructor-arg>
     </jcl:jcl>
@@ -17,7 +17,7 @@ http://www.xeustechnologies.org/schema/jcl http://www.xeustechnologies.org/schem
     <jcl:jcl id="jcl2">
         <constructor-arg>
             <list>
-                <value>target/test-jcl.jar</value>
+                <value>target/dependency/test-jcl.jar</value>
             </list>
         </constructor-arg>
     </jcl:jcl>

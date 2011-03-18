@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.xeustechnologies</groupId>
-	<artifactId>jcl</artifactId>
-	<name>Jar Class Loader</name>
-	<url>http://jcloader.sourceforge.net
-	</url>
-	<version>2.2.2</version>
-	<packaging>pom</packaging>
-	<description>Jar Class Loader</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
 		<version>5</version>
 	</parent>
+
+	<groupId>org.xeustechnologies</groupId>
+	<artifactId>jcl</artifactId>
+	<name>Jar Class Loader</name>
+
+	<version>2.3-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<description>Jar Class Loader</description>
+	<url>http://jcloader.sourceforge.net</url>
 
 	<modules>
 		<module>test-jar</module>
@@ -29,6 +31,7 @@
 		<project.build.sourceEncoding>UTF-8
 		</project.build.sourceEncoding>
 	</properties>
+
 	<developers>
 		<developer>
 			<id>kzafar</id>
@@ -41,6 +44,7 @@
 			</roles>
 		</developer>
 	</developers>
+
 	<licenses>
 		<license>
 			<name>GNU Lesser General Public License</name>
@@ -48,21 +52,19 @@
 			</url>
 		</license>
 	</licenses>
+
 	<scm>
-		<connection>
-			scm:svn:https://jcloader.svn.sourceforge.net/svnroot/jcloader/trunk/JCL2
-		</connection>
-		<developerConnection>
-			scm:svn:https://jcloader.svn.sourceforge.net/svnroot/jcloader/trunk/JCL2
-		</developerConnection>
-		<url>https://jcloader.svn.sourceforge.net/svnroot/jcloader/trunk/JCL2
-		</url>
+		<connection>scm:svn:https://jcloader.svn.sourceforge.net/svnroot/jcloader/trunk/JCL2</connection>
+		<developerConnection>scm:svn:https://jcloader.svn.sourceforge.net/svnroot/jcloader/trunk/JCL2</developerConnection>
+		<url>https://jcloader.svn.sourceforge.net/svnroot/jcloader/trunk/JCL2</url>
 	</scm>
+
 	<issueManagement>
 		<system>sourceforge</system>
 		<url>http://sourceforge.net/tracker/?group_id=177055
 		</url>
 	</issueManagement>
+
 	<distributionManagement>
 		<site>
 			<id>sourceforge-jcl</id>
@@ -70,40 +72,30 @@
 			</url>
 		</site>
 	</distributionManagement>
+
 	<mailingLists>
 		<mailingList>
 			<name>JCL Development Mailing list</name>
-			<subscribe>
-				http://lists.sourceforge.net/mailman/listinfo/jcloader-development
-			</subscribe>
-			<unsubscribe>
-				http://lists.sourceforge.net/mailman/listinfo/jcloader-development
-			</unsubscribe>
-			<archive>
-				http://sourceforge.net/mailarchive/forum.php?forum_name=jcloader-development
-			</archive>
-			<post>jcloader-development@lists.sourceforge.net
-			</post>
+			<subscribe>http://lists.sourceforge.net/mailman/listinfo/jcloader-development</subscribe>
+			<unsubscribe>http://lists.sourceforge.net/mailman/listinfo/jcloader-development</unsubscribe>
+			<archive>http://sourceforge.net/mailarchive/forum.php?forum_name=jcloader-development</archive>
+			<post>jcloader-development@lists.sourceforge.net</post>
 		</mailingList>
+
 		<mailingList>
 			<name>JCL User Mailing list</name>
-			<subscribe>
-				http://lists.sourceforge.net/mailman/listinfo/jcloader-users
-			</subscribe>
-			<unsubscribe>
-				http://lists.sourceforge.net/mailman/listinfo/jcloader-users
-			</unsubscribe>
-			<archive>
-				http://sourceforge.net/mailarchive/forum.php?forum_name=jcloader-users
-			</archive>
-			<post>jcloader-users@lists.sourceforge.net
-			</post>
+			<subscribe>http://lists.sourceforge.net/mailman/listinfo/jcloader-users</subscribe>
+			<unsubscribe>http://lists.sourceforge.net/mailman/listinfo/jcloader-users</unsubscribe>
+			<archive>http://sourceforge.net/mailarchive/forum.php?forum_name=jcloader-users</archive>
+			<post>jcloader-users@lists.sourceforge.net</post>
 		</mailingList>
 	</mailingLists>
+
 	<organization>
 		<name>Xeus Technologies</name>
 		<url>http://www.xeustechnologies.org</url>
 	</organization>
+
 	<build>
 		<extensions>
 			<extension>
@@ -115,27 +107,36 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
+				<artifactId>maven-resources-plugin
+                </artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
+
 	<reporting>
 		<plugins>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<generateReports>false</generateReports>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
 					<aggregate>true</aggregate>
-					<excludePackageNames>org.xeustechnologies.jcl.test
-					</excludePackageNames>
+					<excludePackageNames>org.xeustechnologies.jcl.test</excludePackageNames>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -188,39 +189,58 @@
 					</reportSet>
 				</reportSets>
 				<configuration>
-					<issueLinkTemplate>http://sourceforge.net/support/tracker.php?aid=%ISSUE%
-					</issueLinkTemplate>
+					<issueLinkTemplate>http://sourceforge.net/support/tracker.php?aid=%ISSUE% </issueLinkTemplate>
 				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
-		</dependency>
-		<dependency>
-			<groupId>org.objenesis</groupId>
-			<artifactId>objenesis</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>2.2</version>
-		</dependency>
-	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.xeustechnologies</groupId>
+				<artifactId>jcl-core</artifactId>
+				<version>2.3-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.xeustechnologies</groupId>
+				<artifactId>jcl-spring</artifactId>
+				<version>2.3-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.xeustechnologies</groupId>
+				<artifactId>test-jcl</artifactId>
+				<version>2.3-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.4</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.14</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objenesis</groupId>
+				<artifactId>objenesis</artifactId>
+				<version>1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>2.2</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 </project>

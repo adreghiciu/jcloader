@@ -44,16 +44,21 @@ import org.xeustechnologies.jcl.exception.JclException;
 
 /**
  * @author Kamran Zafar
- * 
  */
-public class JclBeanDefinitionDecorator implements BeanDefinitionDecorator {
+public class JclBeanDefinitionDecorator
+    implements BeanDefinitionDecorator
+{
 
     private static final String JCL_REF = "ref";
+
     private static final String JCL_FACTORY = "jcl-factory-" + UUID.randomUUID();
+
     private static final String JCL_FACTORY_METHOD = "create";
+
     private static final String JCL_FACTORY_CONSTRUCTOR = "getInstance";
 
-    public BeanDefinitionHolder decorate(Node node, BeanDefinitionHolder holder, ParserContext parserContext) {
+    public BeanDefinitionHolder decorate( Node node, BeanDefinitionHolder holder, ParserContext parserContext )
+    {
         String jclRef = node.getAttributes().getNamedItem( JCL_REF ).getNodeValue();
 
         GenericBeanDefinition bd = new GenericBeanDefinition();
@@ -73,29 +78,35 @@ public class JclBeanDefinitionDecorator implements BeanDefinitionDecorator {
         return newHolder;
     }
 
-    @SuppressWarnings("unchecked")
-    private void createDependencyOnJcl(Node node, BeanDefinitionHolder holder, ParserContext parserContext) {
+    private void createDependencyOnJcl( Node node, BeanDefinitionHolder holder, ParserContext parserContext )
+    {
         AbstractBeanDefinition definition = ( (AbstractBeanDefinition) holder.getBeanDefinition() );
         String jclRef = node.getAttributes().getNamedItem( JCL_REF ).getNodeValue();
 
-        if( !parserContext.getRegistry().containsBeanDefinition( JCL_FACTORY ) ) {
+        if ( !parserContext.getRegistry().containsBeanDefinition( JCL_FACTORY ) )
+        {
             BeanDefinitionBuilder initializer = BeanDefinitionBuilder.rootBeanDefinition( JclObjectFactory.class,
                     JCL_FACTORY_CONSTRUCTOR );
             parserContext.getRegistry().registerBeanDefinition( JCL_FACTORY, initializer.getBeanDefinition() );
         }
 
-        if( parserContext.getRegistry().containsBeanDefinition( jclRef ) ) {
+        if ( parserContext.getRegistry().containsBeanDefinition( jclRef ) )
+        {
             String[] dependsOn = definition.getDependsOn();
-            if( dependsOn == null ) {
+            if ( dependsOn == null )
+            {
                 dependsOn = new String[] { jclRef, JCL_FACTORY };
-            } else {
-                List dependencies = new ArrayList( Arrays.asList( dependsOn ) );
+            }
+            else
+            {
+                List<String> dependencies = new ArrayList<String>( Arrays.asList( dependsOn ) );
                 dependencies.add( jclRef );
                 dependencies.add( JCL_FACTORY );
                 dependsOn = (String[]) dependencies.toArray( new String[0] );
             }
             definition.setDependsOn( dependsOn );
-        } else
+        }
+        else
             throw new JclException( "JCL Bean definition " + jclRef + "not found" );
     }
 }
